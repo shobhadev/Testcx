@@ -5,11 +5,8 @@ phases:
     commands:
       #- Get-ChildItem -Path c:\Users
       #- echo f | xcopy /f /y .\settings.xml c:\.m2\settings.xml
-      - get-childitem -path env:* | sort-object name
-      - get-childitem -path $env:CODEBUILD_SRC_DIR/.m2/* -Depth 1 -ErrorAction SilentlyContinue
-      - New-Item -ItemType Directory -Force -Path $env:USERPROFILE\.m2
-      #- aws s3 cp s3://invoice-releases/settings.xml $env:USERPROFILE/.m2/settings.xml
-      #- aws s3 cp s3://invoice-releases/settings-security.xml $env:USERPROFILE/.m2/settings-security.xml
+      - apt-get update -y
+      - apt-get install -y maven 3.6.3
       #- get-childitem -path $env:USERPROFILE/.m2 -Depth 1 -ErrorAction SilentlyContinue
   pre_build:
     commands:
